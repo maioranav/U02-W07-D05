@@ -1,9 +1,12 @@
 const songUrl = 'https://striveschool-api.herokuapp.com/api/deezer/search?q=shine+on+you+crazy+diamond';
 const artistUrl = 'https://striveschool-api.herokuapp.com/api/deezer/search?q=pink+floyd';
+const albumUrl = [
+   'https://striveschool-api.herokuapp.com/api/deezer/search?q=animals+pink+floyd',
+   'https://striveschool-api.herokuapp.com/api/deezer/search?q=travelling+without+movin'
+]
 
 const fetchSongs = async function (url, storagePosition, many = 1) {
    try {
-      sessionStorage.clear();
       let response = await fetch(url)
       if (response.ok) {
          let data = await response.json()
@@ -52,7 +55,6 @@ const list4songs = (array) => {
 
 const favSong = (object) => {
    let libraryDOM = document.querySelector("#secondSection .favSong")
-   console.log(object)
    libraryDOM.innerHTML = `
             <img class="rounded border border-1"
                src="${object.album.cover_big}"
@@ -67,10 +69,65 @@ const favSong = (object) => {
                   <source src="${object.preview}"
                      type="audio/mpeg">
                </audio>
-            </div>
-                  `;
-
+            </div>`;
 }
 
+const albumsList = []
+
+class Album {
+   constructor(object) {
+      this.name = object.album.title
+      this.artist = object.artist.name
+      this.cover = object.album.cover_big
+   }
+}
+
+const drawAlbums = (array) => {
+   let libraryDOM = document.querySelector("#albumItems")
+   libraryDOM.innerHTML = ''
+   for (let i = 0; i < array.length; i++) {
+      if (i > 0) {
+         card = `
+ <div class="carousel-item">
+                     <img class="d-block w-100"
+                        src="${array[i].cover}"
+                        alt="${array[i].artist} - ${array[i].name}">
+                  </div>
+                  `;
+      } else {
+         card = `
+ <div class="carousel-item active">
+                     <img class="d-block w-100"
+                        src="${array[i].cover}"
+                        alt="${array[i].artist} - ${array[i].name}">
+                  </div>
+                  `;
+      }
+
+      libraryDOM.innerHTML += card
+
+   }
+}
+
+const fetchAlbums = async function (url) {
+   try {
+      let response = await fetch(url)
+      if (response.ok) {
+         let data = await response.json()
+         albumsList.push(new Album(data.data[0]))
+         drawAlbums(albumsList)
+      } else {
+         console.log('Il server ha restituito un errore!' + response)
+      }
+   } catch (error) {
+      console.log("C'è un problema all'accesso alla risorsa")
+      console.log(error)
+   }
+}
+
+window.onload = sessionStorage.clear();
 window.onload = fetchSongs(songUrl, "favSong", 1)
 window.onload = fetchSongs(artistUrl, "artist", 4)
+for (let i = 0; i < albumUrl.length; i++) {
+   fetchAlbums(albumUrl[i])
+}
