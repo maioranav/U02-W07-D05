@@ -1,5 +1,6 @@
 const songUrl = 'teardrop massive attack';
 const artistUrl = 'pink floyd';
+const songNo = 3
 const albumUrl = [
    'travelling without movin',
    'you could have it so much better',
@@ -138,7 +139,7 @@ const fetchAlbums = async function (url) {
 
 window.onload = sessionStorage.clear();
 window.onload = fetchSongs(songUrl, "favSong", 1)
-window.onload = fetchSongs(artistUrl, "artist", 4)
+window.onload = fetchSongs(artistUrl, "artist", songNo)
 for (let i = 0; i < albumUrl.length; i++) {
    fetchAlbums(albumUrl[i])
 }
