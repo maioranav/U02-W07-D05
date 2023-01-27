@@ -207,7 +207,10 @@ const getAllInList = () => {
 const getBestRank = () => {
    getAllSongs()
    allSongs.sort((a, b) => (a.rank < b.rank) ? 1 : -1)
-   document.getElementById('rankAlert').innerHTML = `La miglior canzone è ${allSongs[0].artist} - ${allSongs[0].name} (${allSongs[0].rank})`
+   document.getElementById('rankAlert').innerHTML = ''
+   allSongs.forEach(element => {
+      document.getElementById('rankAlert').innerHTML += `<p>${element.artist} - ${element.name} (${element.rank})</p>`
+   })
 }
 
 const showBestRankAlert = () => {
