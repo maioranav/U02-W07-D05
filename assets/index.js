@@ -1,8 +1,9 @@
-const songUrl = 'https://striveschool-api.herokuapp.com/api/deezer/search?q=shine+on+you+crazy+diamond';
+const songUrl = 'https://striveschool-api.herokuapp.com/api/deezer/search?q=teardrop+massive+attack';
 const artistUrl = 'https://striveschool-api.herokuapp.com/api/deezer/search?q=pink+floyd';
 const albumUrl = [
-   'https://striveschool-api.herokuapp.com/api/deezer/search?q=animals+pink+floyd',
-   'https://striveschool-api.herokuapp.com/api/deezer/search?q=travelling+without+movin'
+   'https://striveschool-api.herokuapp.com/api/deezer/search?q=travelling+without+movin',
+   'https://striveschool-api.herokuapp.com/api/deezer/search?q=you+could+have+it+so+much+better',
+   'https://striveschool-api.herokuapp.com/api/deezer/search?q=animals+pink+floyd'
 ]
 
 const fetchSongs = async function (url, storagePosition, many = 1) {
