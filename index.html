@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+   <link rel="stylesheet" href="./assets/style.css">
+   <title>Deezer Custom</title>
+</head>
+
+<body>
+   <main>
+      <h1 class="text-center text-primary fw-bold my-3">Deezer Selection - Vincenzo Maiorana</h1>
+
+      <div id="firstSection" class="container mb-5">
+         <h2 class="mb-3">Favourite Top 4</h2>
+         <div id="cardsTop4" class="d-flex row align-items-center justify-content-center">
+
+            <div class="card text-white bg-dark m-3 rounded" style="width: 18rem;">
+               <img class="card-img-top mt-3"
+                  src="https://e-cdns-images.dzcdn.net/images/artist/6b2aa164cdad314d313833d536c6d3b7/500x500-000000-80-0-0.jpg"
+                  alt="Card image cap">
+               <div class="card-body">
+                  <h5 class="card-title">Title</h5>
+                  <p class="card-text">Artist</p>
+               </div>
+            </div>
+
+
+
+         </div>
+      </div>
+      </div>
+      <div id="secondSection" class="container mb-5">
+         <h2 class="mb-3">1st Favourite Song</h2>
+         <div class="favSong d-flex align-items-center justify-content-center rounded mb-5 flex-wrap">
+            <img class="rounded"
+               src="https://e-cdns-images.dzcdn.net/images/artist/6b2aa164cdad314d313833d536c6d3b7/500x500-000000-80-0-0.jpg"
+               alt="Card image">
+            <div class="card-body p-5">
+               <h4 class="card-title display-5">Nome canzone</h4>
+               <h5 class="card-title my-5">Artista</h5>
+               <p class="card-text my-4 fst-italic">da: </p>
+               <audio controls class="rounded bg-primary">
+                  <source src="https://cdns-preview-4.dzcdn.net/stream/c-4da817e65812bc019dcb18d7fd76ae39-3.mp3"
+                     type="audio/mpeg">
+               </audio>
+            </div>
+         </div>
+         <div id="thirdSection" class=" mb-5">
+            <h2 class="mb-3">Favourite Albums</h2>
+
+
+            <div id="carouselAlbums" class="carousel slide carousel-fade" data-ride="carousel">
+               <ol class="carousel-indicators">
+                  <li data-target="#carouselAlbums" data-slide-to="0" class="active"></li>
+                  <li data-target="#carouselAlbums" data-slide-to="1"></li>
+                  <li data-target="#carouselAlbums" data-slide-to="2"></li>
+               </ol>
+               <div class="carousel-inner">
+                  <div class="carousel-item active">
+                     <img class="d-block w-100"
+                        src="https://e-cdns-images.dzcdn.net/images/artist/6b2aa164cdad314d313833d536c6d3b7/1000x1000-000000-80-0-0.jpg"
+                        alt="First slide">
+                  </div>
+                  <div class="carousel-item">
+                     <img class="d-block w-100"
+                        src="https://e-cdns-images.dzcdn.net/images/artist/6b2aa164cdad314d313833d536c6d3b7/1000x1000-000000-80-0-0.jpg"
+                        alt="Second slide">
+                  </div>
+                  <div class="carousel-item">
+                     <img class="d-block w-100"
+                        src="https://e-cdns-images.dzcdn.net/images/artist/6b2aa164cdad314d313833d536c6d3b7/1000x1000-000000-80-0-0.jpg"
+                        alt="Third slide">
+                  </div>
+               </div>
+               <a class="carousel-control-prev" href="#carouselAlbums" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only"></span>
+               </a>
+               <a class="carousel-control-next" href="#carouselAlbums" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only"></span>
+               </a>
+            </div>
+
+
+         </div>
+   </main>
+   <script src="./assets/index.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"></script>
+</body>
+
+</html>
