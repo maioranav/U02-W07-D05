@@ -122,6 +122,7 @@ const fetchAlbums = async function (url) {
       if (response.ok) {
          let data = await response.json()
          albumsList.push(new Album(data.data[0]))
+         sessionStorage.setItem('albums', JSON.stringify(albumsList))
          drawAlbums(albumsList)
       } else {
          console.log('Il server ha restituito un errore!' + response)
@@ -137,4 +138,79 @@ window.onload = fetchSongs(songUrl, "favSong", 1)
 window.onload = fetchSongs(artistUrl, "artist", 4)
 for (let i = 0; i < albumUrl.length; i++) {
    fetchAlbums(albumUrl[i])
+}
+
+const allAlbums = []
+const allSongs = []
+
+const getAllAlbums = () => {
+   allAlbums.length = 0;
+   let savedAlbums = JSON.parse(sessionStorage.getItem('albums'))
+   savedAlbums.forEach(element => {
+      allAlbums.push({
+         name: element.name,
+         artist: element.artist
+      })
+   });
+
+   let savedArtist = JSON.parse(sessionStorage.getItem('artist'))
+   savedArtist.forEach(element => {
+      allAlbums.push({
+         name: element.album.title,
+         artist: element.artist.name
+      })
+   });
+
+   let savedSong = JSON.parse(sessionStorage.getItem('favSong'))
+   allAlbums.push({
+      name: savedSong.album.title,
+      artist: savedSong.artist.name
+   })
+}
+
+const getAllSongs = () => {
+   allSongs.length = 0;
+   let savedArtist = JSON.parse(sessionStorage.getItem('artist'))
+   savedArtist.forEach(element => {
+      allSongs.push({
+         name: element.title_short,
+         artist: element.artist.name,
+         rank: Number(element.rank)
+      })
+   });
+   let savedSong = JSON.parse(sessionStorage.getItem('favSong'))
+   allSongs.push({
+      name: savedSong.title_short,
+      artist: savedSong.artist.name,
+      rank: Number(savedSong.rank)
+   })
+}
+
+const getAllInList = () => {
+   document.getElementById('modalAlbumsBody').innerHTML = `<h5>Albums:</h5>`
+   getAllAlbums()
+   getAllSongs()
+   allAlbums.forEach(element => {
+      document.getElementById('modalAlbumsBody').innerHTML += `
+      <p>${element.artist} - ${element.name}`
+   })
+   document.getElementById('modalAlbumsBody').innerHTML += `<h5 class="mt-5">Songs:</h5>`
+   allSongs.forEach(element => {
+      document.getElementById('modalAlbumsBody').innerHTML += `
+      <p>${element.artist} - ${element.name}`
+   })
+}
+
+const getBestRank = () => {
+   getAllSongs()
+   allSongs.sort((a, b) => (a.rank < b.rank) ? 1 : -1)
+   document.getElementById('rankAlert').innerHTML = `La miglior canzone è ${allSongs[0].artist} - ${allSongs[0].name} (${allSongs[0].rank})`
+}
+
+const showBestRankAlert = () => {
+   getBestRank()
+   document.getElementById('rankAlert').classList.add('showRank')
+   setTimeout(() => {
+      document.getElementById('rankAlert').classList.remove('showRank')
+   }, 3000)
 }
