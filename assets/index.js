@@ -16,7 +16,7 @@ const fetchSongs = async function (url, storagePosition, many = 1) {
             for (let i = 0; i < many; i++) {
                queryResults.push(data.data[i])
             }
-            //  list4songs(queryResults)
+            list4songs(queryResults)
             sessionStorage.setItem(storagePosition, JSON.stringify(queryResults))
          }
       } else {
@@ -28,7 +28,27 @@ const fetchSongs = async function (url, storagePosition, many = 1) {
    }
 }
 
+const list4songs = (array) => {
+   let libraryDOM = document.querySelector("#cardsTop4")
+   libraryDOM.innerHTML = ''
+   for (let i = 0; i < array.length; i++) {
 
+      let card = `
+            <div class="card text-white bg-dark m-3 rounded" style="width: 18rem;">
+               <img class="card-img-top mt-3"
+                  src="${array[i].album.cover_big}"
+                  alt="Card image cap">
+               <div class="card-body">
+                  <h5 class="card-title">${array[i].title_short}</h5>
+                  <p class="card-text">${array[i].artist.name}</p>
+               </div>
+            </div>
+                  `;
+
+      libraryDOM.innerHTML += card
+
+   }
+}
 
 
 window.onload = fetchSongs(songUrl, "favSong", 1)
