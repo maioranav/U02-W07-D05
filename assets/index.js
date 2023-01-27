@@ -92,6 +92,10 @@ const drawAlbums = (array) => {
                      <img class="d-block w-100"
                         src="${array[i].cover}"
                         alt="${array[i].artist} - ${array[i].name}">
+                         <div class="carousel-caption d-none d-md-block">
+        <h5  class="bg-dark px-2 py-1">${array[i].artist} - ${array[i].name}</h5>
+      </div>
+
                   </div>
                   `;
       } else {
@@ -100,6 +104,9 @@ const drawAlbums = (array) => {
                      <img class="d-block w-100"
                         src="${array[i].cover}"
                         alt="${array[i].artist} - ${array[i].name}">
+                                                 <div class="carousel-caption d-none d-md-block">
+        <h5 class="bg-dark px-2 py-1">${array[i].artist} - ${array[i].name}</h5>
+      </div>
                   </div>
                   `;
       }
