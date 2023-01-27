@@ -1,14 +1,16 @@
-const songUrl = 'https://striveschool-api.herokuapp.com/api/deezer/search?q=teardrop+massive+attack';
-const artistUrl = 'https://striveschool-api.herokuapp.com/api/deezer/search?q=pink+floyd';
+const songUrl = 'teardrop massive attack';
+const artistUrl = 'pink floyd';
 const albumUrl = [
-   'https://striveschool-api.herokuapp.com/api/deezer/search?q=travelling+without+movin',
-   'https://striveschool-api.herokuapp.com/api/deezer/search?q=you+could+have+it+so+much+better',
-   'https://striveschool-api.herokuapp.com/api/deezer/search?q=animals+pink+floyd'
+   'travelling without movin',
+   'you could have it so much better',
+   'animals pink floyd'
 ]
+
+const baseUrl = "https://striveschool-api.herokuapp.com/api/deezer/search?q="
 
 const fetchSongs = async function (url, storagePosition, many = 1) {
    try {
-      let response = await fetch(url)
+      let response = await fetch(baseUrl + url)
       if (response.ok) {
          let data = await response.json()
          if (many === 1) {
@@ -119,7 +121,7 @@ const drawAlbums = (array) => {
 
 const fetchAlbums = async function (url) {
    try {
-      let response = await fetch(url)
+      let response = await fetch(baseUrl + url)
       if (response.ok) {
          let data = await response.json()
          albumsList.push(new Album(data.data[0]))
